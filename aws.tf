@@ -49,36 +49,38 @@ locals {
   }
 }
 
-resource "aws_instance" "ubuntu_count" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = local.web_instance_type_map[terraform.workspace]
-  count         = local.web_instance_count_map[terraform.workspace]
+resource "null_resource" "example" {}
 
-  cpu_core_count              = 1
-  cpu_threads_per_core        = 2
-  monitoring                  = false
-  associate_public_ip_address = true
+# resource "aws_instance" "ubuntu_count" {
+#   ami           = data.aws_ami.ubuntu.id
+#   instance_type = local.web_instance_type_map[terraform.workspace]
+#   count         = local.web_instance_count_map[terraform.workspace]
 
-  tags = {
-    Name = "ubuntu_count_${terraform.workspace}_${count.index}"
-  }
-}
+#   cpu_core_count              = 1
+#   cpu_threads_per_core        = 2
+#   monitoring                  = false
+#   associate_public_ip_address = true
 
-resource "aws_instance" "ubuntu_for_each" {
-  lifecycle {
-    create_before_destroy = true
-  }
+#   tags = {
+#     Name = "ubuntu_count_${terraform.workspace}_${count.index}"
+#   }
+# }
 
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = local.web_instance_type_map[terraform.workspace]
-  for_each      = local.web_instance_for_each_map[terraform.workspace]
+# resource "aws_instance" "ubuntu_for_each" {
+#   lifecycle {
+#     create_before_destroy = true
+#   }
 
-  cpu_core_count              = 1
-  cpu_threads_per_core        = 2
-  monitoring                  = false
-  associate_public_ip_address = true
+#   ami           = data.aws_ami.ubuntu.id
+#   instance_type = local.web_instance_type_map[terraform.workspace]
+#   for_each      = local.web_instance_for_each_map[terraform.workspace]
 
-  tags = {
-    Name = "Netology 74, ${each.key}"
-  }
-}
+#   cpu_core_count              = 1
+#   cpu_threads_per_core        = 2
+#   monitoring                  = false
+#   associate_public_ip_address = true
+
+#   tags = {
+#     Name = "Netology 74, ${each.key}"
+#   }
+# }

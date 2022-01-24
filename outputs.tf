@@ -13,26 +13,26 @@ output "aws_metadata_region" {
   description = "AWS регион, который используется в данный момен"
 }
 
-output "aws_net_private_ip" {
-  value       = resource.aws_instance.ubuntu_count.*.private_ip
-  description = "Приватный IP ec2 инстанса, созданного с count"
-}
+# output "aws_net_private_ip" {
+#   value       = resource.aws_instance.ubuntu_count.*.private_ip
+#   description = "Приватный IP ec2 инстанса, созданного с count"
+# }
 
-output "aws_net_subnet_id" {
-  value       = resource.aws_instance.ubuntu_count.*.subnet_id
-  description = "Идентификатор подсети инстанса, созданного с count"
-}
+# output "aws_net_subnet_id" {
+#   value       = resource.aws_instance.ubuntu_count.*.subnet_id
+#   description = "Идентификатор подсети инстанса, созданного с count"
+# }
 
-output "aws_net_private_ip__for_each" {
-  value = toset([
-    for instance in aws_instance.ubuntu_for_each : instance.private_ip
-  ])
-  description = "Приватный IP ec2 инстанса, созданного с for_each"
-}
+# output "aws_net_private_ip__for_each" {
+#   value = toset([
+#     for instance in aws_instance.ubuntu_for_each : instance.private_ip
+#   ])
+#   description = "Приватный IP ec2 инстанса, созданного с for_each"
+# }
 
-output "aws_net_subnet_id__for_each" {
-  value = toset([
-    for instance in aws_instance.ubuntu_for_each : instance.subnet_id
-  ])
-  description = "Идентификатор подсети инстанса, созданного с for_each"
-}
+# output "aws_net_subnet_id__for_each" {
+#   value = toset([
+#     for instance in aws_instance.ubuntu_for_each : instance.subnet_id
+#   ])
+#   description = "Идентификатор подсети инстанса, созданного с for_each"
+# }
