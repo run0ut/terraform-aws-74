@@ -49,38 +49,38 @@ locals {
   }
 }
 
-resource "null_resource" "example" {}
+# resource "null_resource" "example" {}
 
-# resource "aws_instance" "ubuntu_count" {
-#   ami           = data.aws_ami.ubuntu.id
-#   instance_type = local.web_instance_type_map[terraform.workspace]
-#   count         = local.web_instance_count_map[terraform.workspace]
+resource "aws_instance" "ubuntu_count" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = local.web_instance_type_map[terraform.workspace]
+  count         = local.web_instance_count_map[terraform.workspace]
 
-#   cpu_core_count              = 1
-#   cpu_threads_per_core        = 2
-#   monitoring                  = false
-#   associate_public_ip_address = true
+  cpu_core_count              = 1
+  cpu_threads_per_core        = 2
+  monitoring                  = false
+  associate_public_ip_address = true
 
-#   tags = {
-#     Name = "ubuntu_count_${terraform.workspace}_${count.index}"
-#   }
-# }
+  tags = {
+    Name = "ubuntu_count_${terraform.workspace}_${count.index}"
+  }
+}
 
-# resource "aws_instance" "ubuntu_for_each" {
-#   lifecycle {
-#     create_before_destroy = true
-#   }
+resource "aws_instance" "ubuntu_for_each" {
+  lifecycle {
+    create_before_destroy = true
+  }
 
-#   ami           = data.aws_ami.ubuntu.id
-#   instance_type = local.web_instance_type_map[terraform.workspace]
-#   for_each      = local.web_instance_for_each_map[terraform.workspace]
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = local.web_instance_type_map[terraform.workspace]
+  for_each      = local.web_instance_for_each_map[terraform.workspace]
 
-#   cpu_core_count              = 1
-#   cpu_threads_per_core        = 2
-#   monitoring                  = false
-#   associate_public_ip_address = true
+  cpu_core_count              = 1
+  cpu_threads_per_core        = 2
+  monitoring                  = false
+  associate_public_ip_address = true
 
-#   tags = {
-#     Name = "Netology 74, ${each.key}"
-#   }
-# }
+  tags = {
+    Name = "Netology 74, ${each.key}"
+  }
+}
